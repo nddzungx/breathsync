@@ -1,0 +1,19 @@
+{
+  "name": "BreathSync – Hơi thở ý thức",
+  "short_name": "BreathSync",
+  "description": "Tập thở chậm có kiểm soát cùng vòng tròn, âm thanh thiền và rung theo nhịp. Song ngữ Việt – Anh, dùng được khi không có mạng.",
+  "lang": "vi",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0f1c",
+  "theme_color": "#0a0f1c",
+  "categories": ["health", "lifestyle"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

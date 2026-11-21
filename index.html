@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0f1c">
+<title>BreathSync — Hơi thở ý thức · HLV Sức Khỏe</title>
+<meta name="description" content="BreathSync: hướng dẫn thở chậm có kiểm soát (4-4-4, 4-4-8, 4-16-8, 4-7-8, ngân âm M, thở bụng) với vòng tròn, âm thanh thiền và rung theo nhịp. Song ngữ Việt – Anh, miễn phí, dùng được khi không có mạng.">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+<link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="BreathSync">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="BreathSync — Hơi thở ý thức">
+<meta property="og:description" content="Thở chậm cùng vòng tròn, âm thanh và rung theo nhịp. Miễn phí · Việt – Anh · Offline.">
+<meta property="og:image" content="https://tho.hlvsuckhoe.com/icons/icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,500&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Bố cục: "đêm yên tĩnh" – nền xanh đêm, màu nhấn đổi theo kỹ thuật thở.
+   Điện thoại là ưu tiên số 1: thanh điều khiển cố định dưới đáy (vùng ngón cái),
+   khi đang tập thì ẩn mọi thứ trừ vòng tròn (chế độ tập trung). */
+:root{
+  --bg:#0a0f1c; --bg2:#111a2e; --bg3:#16213b; --sunk:#070b14;
+  --ink:#e9edf7; --dim:#a3acc6; --faint:#6d789a;
+  --line:rgba(232,236,246,.09); --line2:rgba(232,236,246,.18);
+  --accent:#10b981; --accent-soft:#34d399; --accent-rgb:16,185,129;
+  --warn:#f5b73b;
+  --r-lg:24px; --r-md:18px; --r-sm:12px;
+  --display:'Fraunces', Georgia, serif;
+  --body:'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --dock-h:84px;
+  --safe-b:env(safe-area-inset-bottom, 0px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; min-height:100dvh; color:var(--ink); font:15px/1.55 var(--body);
+  background:
+    radial-gradient(ellipse 900px 560px at 50% -12%, rgba(var(--accent-rgb),.17), transparent 62%),
+    radial-gradient(ellipse 700px 480px at 90% 105%, rgba(var(--accent-rgb),.08), transparent 60%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  -webkit-tap-highlight-color:transparent;
+}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;touch-action:manipulation}
+a{color:var(--accent-soft)}
+:focus-visible{outline:2px solid var(--accent-soft);outline-offset:3px;border-radius:10px}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.shell{max-width:560px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px calc(var(--dock-h) + var(--safe-b) + 20px);display:flex;flex-direction:column;gap:14px}
+
+/* ---------- đầu trang ---------- */
+.top{display:flex;align-items:center;gap:10px}
+.brand{display:flex;align-items:center;gap:9px;flex:1;min-width:0;overflow:hidden;text-decoration:none;color:inherit}
+.brand > span{min-width:0}
+.brand img{width:38px;height:38px;border-radius:11px;flex:none}
+.brand b{display:block;font:italic 560 21px/1.1 var(--display);letter-spacing:.01em}
+.brand small{display:block;font-size:9.5px;letter-spacing:.02em;color:var(--faint);font-weight:600;line-height:1.25;margin-top:2px}
+.pill{display:flex;align-items:center;gap:5px;background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px;color:var(--dim);font-weight:600;white-space:nowrap}
+.pill svg{width:13px;height:13px;color:#fb923c}
+.icon-btn{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg2);display:grid;place-items:center;color:var(--dim)}
+.icon-btn svg{width:19px;height:19px}
+.lang-btn{font-size:12.5px;font-weight:800;color:var(--accent-soft);letter-spacing:.02em}
+.top{gap:7px}
+.top .icon-btn{width:36px;height:36px}
+.top .icon-btn svg{width:18px;height:18px}
+.welcome{display:flex;flex-direction:column;gap:10px;background:linear-gradient(135deg,rgba(var(--accent-rgb),.16),rgba(var(--accent-rgb),.04));border:1px solid rgba(var(--accent-rgb),.35);border-radius:var(--r-md);padding:14px}
+.welcome b{font-size:15px}
+.welcome p{font-size:13px;color:var(--dim);line-height:1.5}
+.guide h3{font-size:15px;margin:0 0 8px}
+.guide ol.steps{margin:0;padding-left:20px;font-size:13.5px;color:var(--dim);line-height:1.6}
+.guide ol.steps li+li{margin-top:6px}
+.guide .qa b{display:block;font-size:13.5px;color:var(--ink)}
+.guide .qa p{font-size:13px;color:var(--dim);margin:2px 0 10px}
+
+.track{height:3px;border-radius:9px;background:var(--line);overflow:hidden}
+.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent-soft),var(--accent));transition:width .3s linear}
+
+/* ---------- sân khấu ---------- */
+.stage{display:flex;flex-direction:column;align-items:center;gap:8px;padding:2px 0}
+.badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center}
+.badge{font-size:11.5px;letter-spacing:.04em;color:var(--accent-soft);background:rgba(var(--accent-rgb),.12);border:1px solid rgba(var(--accent-rgb),.3);padding:4px 11px;border-radius:999px;font-weight:600}
+.badge.ghost{color:var(--faint);background:none;border-color:var(--line)}
+.ring-wrap{position:relative;width:min(78vw,320px);aspect-ratio:1;transition:width .5s ease;border:0;background:none;padding:0;border-radius:50%}
+.ring-wrap svg{width:100%;height:100%;overflow:visible;display:block}
+#ringGroup{transform-origin:160px 160px;transform:scale(.62);will-change:transform}
+.ring-track{fill:none;stroke:var(--line);stroke-width:2}
+#progressRing{fill:none;stroke:var(--accent);stroke-width:3.5;stroke-linecap:round;transform:rotate(-90deg);transform-origin:160px 160px;transition:stroke .5s}
+.readout{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;pointer-events:none;padding:0 18%}
+.phase{font-size:clamp(13px,3.6vw,15px);font-weight:800;letter-spacing:.12em;text-transform:uppercase;min-height:1.4em;line-height:1.25}
+.phase-hint{font-size:11.5px;color:var(--dim);min-height:1.3em;line-height:1.3}
+.count{font:480 clamp(60px,18vw,96px)/1 var(--display);color:var(--accent-soft);font-variant-numeric:tabular-nums;text-shadow:0 0 40px rgba(var(--accent-rgb),.35)}
+.ratio{display:flex;gap:5px;font-size:13px;color:var(--faint);font-variant-numeric:tabular-nums;margin-top:2px}
+.ratio .seg{padding:0 2px;transition:color .25s}
+.ratio .seg.on{color:var(--accent-soft);font-weight:800}
+.ratio .sep{opacity:.5}
+.meta{display:flex;gap:14px;font-size:12.5px;color:var(--dim);font-variant-numeric:tabular-nums}
+.meta b{color:var(--ink)}
+.tap-hint{font-size:11.5px;color:var(--faint);min-height:1.2em;text-align:center}
+
+/* ---------- thẻ / khối ---------- */
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r-md);padding:14px}
+.label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:700;margin:0 2px 8px}
+.modes{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(132px,40%);gap:9px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -16px;padding-left:16px;padding-right:16px;scroll-padding:0 16px}
+.modes::-webkit-scrollbar{display:none}
+.mode{scroll-snap-align:start;text-align:left;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r-md);padding:11px 12px;display:flex;flex-direction:column;gap:4px;transition:border-color .2s,box-shadow .2s}
+.mode.on{border-color:rgba(var(--card-rgb),.6);box-shadow:0 0 0 1px rgba(var(--card-rgb),.25),0 10px 24px -10px rgba(var(--card-rgb),.45)}
+.mode .n{display:flex;justify-content:space-between;font-size:10.5px;font-weight:700;color:var(--faint)}
+.mode .n span:last-child{color:rgb(var(--card-rgb))}
+.mode b{font-size:13.5px;line-height:1.25}
+.mode small{font-size:11.5px;color:var(--faint);font-variant-numeric:tabular-nums}
+.variants{display:flex;gap:8px}
+.variant{flex:1;text-align:left;padding:9px 11px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--bg2);color:var(--dim);font-size:12px;font-weight:600;line-height:1.3}
+.variant b{display:block;font-size:12.5px;color:var(--faint);margin-top:2px;font-variant-numeric:tabular-nums}
+.variant.on{border-color:rgba(var(--accent-rgb),.55);background:rgba(var(--accent-rgb),.1);color:var(--ink)}
+.variant.on b{color:var(--accent-soft)}
+.caution{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:#f3d9a4;background:rgba(245,183,59,.08);border:1px solid rgba(245,183,59,.25);border-radius:var(--r-sm);padding:9px 11px;line-height:1.45}
+.caution svg{flex:none;width:16px;height:16px;margin-top:2px;color:var(--warn)}
+.chips{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.chip{padding:9px 2px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--bg2);color:var(--dim);font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.chip.on,.chip[aria-pressed="true"]{border-color:rgba(var(--accent-rgb),.55);background:rgba(var(--accent-rgb),.14);color:var(--accent-soft)}
+.today{display:flex;justify-content:center;gap:6px 16px;flex-wrap:wrap;font-size:12.5px;color:var(--faint)}
+.today b{color:var(--dim)}
+
+/* ---------- ngăn mở rộng ---------- */
+details.fold{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
+details.fold summary{list-style:none;display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer;font-weight:700;font-size:14px}
+details.fold summary::-webkit-details-marker{display:none}
+details.fold summary .ico{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:rgba(var(--accent-rgb),.12);color:var(--accent-soft);flex:none}
+details.fold summary .ico svg{width:17px;height:17px}
+details.fold summary .chev{margin-left:auto;width:16px;height:16px;color:var(--faint);transition:transform .25s}
+details.fold[open] summary .chev{transform:rotate(180deg)}
+details.fold summary small{display:block;font-weight:500;font-size:11.5px;color:var(--faint)}
+.fold-body{padding:0 14px 15px;display:flex;flex-direction:column;gap:12px}
+.hint{font-size:12.5px;color:var(--dim);line-height:1.55}
+.row{display:flex;align-items:center;gap:10px}
+.row.between{justify-content:space-between}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid rgba(var(--accent-rgb),.4);background:rgba(var(--accent-rgb),.1);color:var(--accent-soft);border-radius:999px;padding:10px 16px;font-weight:700;font-size:13.5px;text-decoration:none}
+.btn.solid{background:linear-gradient(135deg,var(--accent-soft),var(--accent));color:#06140e;border:0}
+.btn.line{background:none;border-color:var(--line2);color:var(--dim)}
+.btn.sm{padding:7px 12px;font-size:12.5px}
+.btn.block{width:100%}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.measuring{background:var(--accent);color:#06140e;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(var(--accent-rgb),.45)}50%{box-shadow:0 0 0 9px rgba(var(--accent-rgb),0)}}
+.readout-sm{font-size:14px;font-weight:700;min-width:64px;text-align:right;font-variant-numeric:tabular-nums}
+input[type=number]{width:78px;padding:8px;border-radius:var(--r-sm);border:1px solid var(--line2);background:var(--bg3);text-align:right;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.preview{font-size:12.5px;color:var(--accent-soft);background:rgba(var(--accent-rgb),.08);border:1px solid rgba(var(--accent-rgb),.2);border-radius:var(--r-sm);padding:8px 10px;font-variant-numeric:tabular-nums}
+.preview:empty{display:none}
+.switch{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 0}
+.switch span{font-size:13.5px}
+.switch small{display:block;font-size:11.5px;color:var(--faint)}
+.switch input{appearance:none;-webkit-appearance:none;width:44px;height:26px;border-radius:99px;background:var(--bg3);border:1px solid var(--line2);position:relative;flex:none;transition:background .2s}
+.switch input::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--dim);transition:transform .2s,background .2s}
+.switch input:checked{background:rgba(var(--accent-rgb),.55)}
+.switch input:checked::after{transform:translateX(18px);background:#fff}
+.seg-group{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.tap-big{width:100%;height:58px;border-radius:999px;border:1px solid rgba(var(--accent-rgb),.4);background:rgba(var(--accent-rgb),.1);color:var(--accent-soft);font-weight:800;font-size:15px;transition:transform .1s,background .2s}
+.tap-big:active,.tap-big.tapped{transform:scale(.97);background:rgba(var(--accent-rgb),.3)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px;background:var(--bg3);border:1px solid var(--line);border-radius:var(--r-sm);padding:9px 4px}
+.stat span{font-size:10.5px;color:var(--faint);line-height:1.3;min-height:2.6em;display:flex;align-items:center}
+.stat b{font-size:18px;color:var(--accent-soft);font-variant-numeric:tabular-nums}
+.stat small{font-size:10px;color:var(--faint)}
+.hist{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none}
+.hist i{flex:none;font-style:normal;font-size:11px;padding:3px 8px;border-radius:99px;background:var(--bg3);border:1px solid var(--line);color:var(--faint);font-variant-numeric:tabular-nums}
+.hist i.st{color:var(--accent-soft);border-color:rgba(var(--accent-rgb),.4)}
+.hist i.last{color:var(--ink);font-weight:700}
+.linkish{background:none;border:0;padding:0;color:var(--faint);font-size:12px;text-decoration:underline;align-self:flex-start}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:11px;padding:3px 9px;border-radius:99px;background:rgba(var(--accent-rgb),.12);color:var(--accent-soft);border:1px solid rgba(var(--accent-rgb),.25)}
+.ev{font-size:13px;color:var(--dim);line-height:1.6}
+.ev p+p{margin-top:8px}
+.lv{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:99px;margin-left:3px;vertical-align:1px;white-space:nowrap}
+.lv.y{background:rgba(52,211,153,.15);color:#6ee7b7}
+.lv.p{background:rgba(167,139,250,.15);color:#c4b5fd}
+.lv.d{background:rgba(245,183,59,.15);color:#fcd34d}
+table.t{width:100%;border-collapse:collapse;font-size:12.5px}
+table.t th,table.t td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+table.t th{color:var(--faint);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+ul.list,ol.list{margin:0;padding-left:18px;font-size:13px;color:var(--dim);line-height:1.6}
+ul.list li+li,ol.list li+li{margin-top:4px}
+.src{font-size:12px;color:var(--faint)}
+.foot{text-align:center;font-size:12px;color:var(--faint);line-height:1.6;padding:6px 6px 0}
+.foot a{color:var(--dim)}
+
+/* ---------- thanh điều khiển cố định (vùng ngón cái) ---------- */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 16px calc(10px + var(--safe-b));background:linear-gradient(to top,rgba(10,15,28,.97) 60%,rgba(10,15,28,0));}
+.dock-in{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.dock .icon-btn{width:50px;height:50px;background:var(--bg2)}
+.dock .icon-btn[aria-pressed="false"]{opacity:.55}
+.go{flex:1;height:58px;border:0;border-radius:999px;background:linear-gradient(135deg,var(--accent-soft),var(--accent));color:#06140e;font-weight:800;font-size:16.5px;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 14px 30px -10px rgba(var(--accent-rgb),.6);transition:transform .15s}
+.go:active{transform:scale(.98)}
+.go svg{width:19px;height:19px}
+
+/* ---------- chế độ tập trung khi đang thở ---------- */
+body.running .setup{display:none!important}
+body.running .ring-wrap{width:min(88vw,400px)}
+body.running .stage{min-height:calc(100dvh - var(--dock-h) - 120px);justify-content:center}
+
+/* ---------- bảng giới thiệu / đồng ý ---------- */
+.sheet{position:fixed;inset:0;z-index:50;background:rgba(4,7,14,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center}
+.sheet-in{width:100%;max-width:560px;max-height:94dvh;overflow-y:auto;background:var(--bg);border:1px solid var(--line2);border-bottom:0;border-radius:24px 24px 0 0;padding:14px 16px calc(20px + var(--safe-b));display:flex;flex-direction:column;gap:12px;overscroll-behavior:contain}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;position:sticky;top:-14px;background:var(--bg);padding:6px 0;z-index:1}
+.sheet-head h2{font:italic 560 20px var(--display)}
+.about-hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px 0}
+.about-hero img{width:84px;height:84px;border-radius:22px}
+.about-hero b{font:italic 560 24px var(--display)}
+.qr{width:min(230px,70%);border-radius:14px;background:#fff;padding:6px;display:block;margin:4px auto}
+.center{text-align:center}
+.mono{font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.avatar{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font:600 22px var(--display);background:linear-gradient(135deg,var(--accent-soft),#0b6b55);color:#06140e;flex:none}
+.toast{position:fixed;left:50%;bottom:calc(var(--dock-h) + var(--safe-b) + 14px);transform:translateX(-50%);background:var(--bg3);border:1px solid var(--line2);padding:9px 16px;border-radius:999px;font-size:13px;z-index:60;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+@media (min-width:600px){.sheet{align-items:center}.sheet-in{border-radius:24px;border-bottom:1px solid var(--line2)}}
+@media (max-width:480px){.pill{display:none}}
+@media (max-width:340px){.chips{grid-template-columns:repeat(3,1fr)}}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <header class="top">
+    <a class="brand" href="./" aria-label="BreathSync">
+      <img src="img/logo.svg" alt="" width="40" height="40">
+      <span><b>BreathSync</b><small>HƠI THỞ Ý THỨC · HLV SỨC KHOẺ</small></span>
+    </a>
+    <span class="pill" id="streakPill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3-2 4-2 7a3 3 0 0 0 6 0c1 1.5 1.5 3 1.5 4.5A6.5 6.5 0 0 1 4 13.5C4 8 9 6 12 2z"/></svg><span id="streakText">0</span></span>
+    <button class="icon-btn lang-btn" id="langBtn" type="button" aria-label="English">EN</button>
+    <button class="icon-btn" id="guideBtn" type="button" data-i-aria="guide_open" aria-label="Hướng dẫn sử dụng">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4.5"/><path d="M12 17.5h.01"/></svg>
+    </button>
+    <button class="icon-btn" id="aboutBtn" type="button" data-i-aria="about_open" aria-label="Giới thiệu & ủng hộ">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg>
+    </button>
+  </header>
+
+  <div class="track"><i id="sessionFill"></i></div>
+
+  <main class="stage" aria-live="off">
+    <div class="badges"><span class="badge" id="bandBadge">Alpha · 8–12 Hz</span><span class="badge ghost" id="srcBadge">Số 117</span></div>
+    <button class="ring-wrap" id="ringBtn" type="button" data-i-aria="ring_aria" aria-label="Vòng thở – chạm để bắt đầu hoặc tạm dừng">
+      <svg viewBox="0 0 320 320" aria-hidden="true">
+        <defs>
+          <radialGradient id="coreGrad" cx="50%" cy="40%" r="65%"><stop offset="0%" style="stop-color:var(--bg3)"/><stop offset="70%" style="stop-color:var(--bg2)"/><stop offset="100%" style="stop-color:var(--sunk)"/></radialGradient>
+          <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:var(--accent);stop-opacity:.55"/><stop offset="100%" style="stop-color:var(--accent);stop-opacity:0"/></radialGradient>
+          <filter id="softBlur" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="16"/></filter>
+        </defs>
+        <circle class="ring-track" cx="160" cy="160" r="140"/>
+        <circle id="progressRing" cx="160" cy="160" r="140"/>
+        <g id="ringGroup">
+          <circle cx="160" cy="160" r="118" fill="url(#glowGrad)" filter="url(#softBlur)"/>
+          <circle cx="160" cy="160" r="96" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity=".4"/>
+          <circle cx="160" cy="160" r="80" fill="url(#coreGrad)" stroke="var(--accent)" stroke-width="1" stroke-opacity=".55"/>
+        </g>
+      </svg>
+      <div class="readout">
+        <div class="phase" id="phaseLabel">SẴN SÀNG</div>
+        <div class="count" id="countNum">4</div>
+        <div class="ratio" id="ratioCap"></div>
+        <div class="phase-hint" id="phaseHint"></div>
+      </div>
+    </button>
+    <div class="meta" id="metaRow" hidden><span><span data-i="cycles">Chu kỳ</span> <b id="cycleNum">0</b></span><span><b id="timeNow">00:00</b> / <span id="timeTotal">05:00</span></span></div>
+    <p class="tap-hint" id="tapHint" data-i="tap_hint">Chạm vòng tròn hoặc nút Bắt đầu</p>
+  </main>
+
+  <div class="setup">
+    <p class="today" id="todayRow"></p>
+  </div>
+
+  <div class="setup welcome" id="welcomeCard" hidden>
+    <b data-i="welcome_title">Lần đầu dùng BreathSync?</b>
+    <p data-i="welcome_text">Đọc 1 phút để biết ứng dụng giúp gì cho bạn, ý nghĩa của hơi thở chậm và cách dùng từng nút.</p>
+    <div class="row"><button class="btn solid sm" type="button" id="welcomeGo" data-i="guide_open">Hướng dẫn sử dụng</button><button class="linkish" type="button" id="welcomeHide" data-i="hide" style="align-self:center">Ẩn</button></div>
+  </div>
+
+  <section class="setup" aria-labelledby="lblTech">
+    <p class="label" id="lblTech" data-i="choose_tech">Chọn kỹ thuật thở</p>
+    <nav class="modes" id="modeRail" aria-labelledby="lblTech"></nav>
+    <div class="variants" id="variantRow" hidden></div>
+    <div class="caution" id="cautionBox" style="margin-top:10px" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><span id="cautionText"></span></div>
+  </section>
+
+  <section class="setup" aria-labelledby="lblDur">
+    <p class="label" id="lblDur" data-i="duration">Thời lượng</p>
+    <div class="chips" id="durRow"></div>
+  </section>
+
+  <div class="setup" style="display:flex;flex-direction:column;gap:10px">
+
+    <details class="fold" id="foldWhy">
+      <summary><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><span><span data-i="why_title">Cách tập & cơ sở khoa học</span><small id="whySub">Thở đều 3D</small></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <div class="fold-body">
+        <div><p class="label" data-i="how">Cách tập</p><ol class="list" id="howList"></ol></div>
+        <div><p class="label" data-i="when">Dùng khi</p><p class="hint" id="whenText"></p></div>
+        <div><p class="label" data-i="evidence">Y văn nói gì</p><div class="ev" id="evText"></div></div>
+        <div class="tags" id="tagRow"></div>
+        <p class="src" id="srcText"></p>
+      </div>
+    </details>
+
+    <details class="fold">
+      <summary><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h3l2-5 3 10 2-5h6"/></svg></span><span><span data-i="brake_title">Bộ phanh hơi thở & lộ trình 12 tuần</span><small data-i="brake_sub">Đi từ nấc nhẹ đến nấc sâu</small></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <div class="fold-body" id="brakeBody"></div>
+    </details>
+
+    <details class="fold" id="foldTiming">
+      <summary><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></span><span><span data-i="timing_title">Nhịp riêng của bạn</span><small id="timingSub" data-i="timing_std">Đang dùng nhịp tiêu chuẩn</small></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <div class="fold-body">
+        <div class="seg-group" style="grid-template-columns:1fr 1fr">
+          <button class="chip" type="button" id="timingStd" aria-pressed="true" data-i="std">Tiêu chuẩn</button>
+          <button class="chip" type="button" id="timingCus" aria-pressed="false" data-i="custom">Cá nhân hoá</button>
+        </div>
+        <div id="timingPanel" hidden style="display:flex;flex-direction:column;gap:12px">
+          <p class="hint" data-i="timing_hint">Đo hoặc nhập thời gian hít vào thoải mái của bạn – ứng dụng tự tính thì nín và thở ra theo đúng tỉ lệ của kỹ thuật đang chọn.</p>
+          <div class="row"><button class="btn" type="button" id="swBtn" style="flex:1" data-i="sw_start">Bấm khi bắt đầu hít vào</button><span class="readout-sm" id="swRead">—</span></div>
+          <div class="row between"><label for="inhaleInput" class="hint" data-i="or_type">Hoặc nhập số giây hít vào</label><span class="row" style="gap:6px"><input type="number" id="inhaleInput" step="0.5" min="2" max="12" inputmode="decimal"><span class="hint" data-i="sec">giây</span></span></div>
+          <p class="preview" id="timingPreview"></p>
+        </div>
+      </div>
+    </details>
+
+    <details class="fold">
+      <summary><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span><span><span data-i="sound_title">Âm thanh, giọng đọc & rung</span><small id="soundSub">Sóng biển · chuông bát</small></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <div class="fold-body">
+        <div><p class="label" data-i="ambience">Nền âm thanh (co giãn theo hơi thở)</p>
+          <div class="seg-group" id="ambRow">
+            <button class="chip" type="button" data-amb="ocean" data-i="amb_ocean">Sóng biển</button>
+            <button class="chip" type="button" data-amb="pad" data-i="amb_pad">Nền ấm</button>
+            <button class="chip" type="button" data-amb="both" data-i="amb_both">Cả hai</button>
+            <button class="chip" type="button" data-amb="off" data-i="amb_off">Tắt</button>
+          </div>
+        </div>
+        <label class="switch"><span><span data-i="cue_bell">Chuông bát báo nhịp</span><small data-i="cue_bell_s">Tiếng bát hát cao khi hít vào, trầm khi thở ra</small></span><input type="checkbox" id="optBell"></label>
+        <label class="switch"><span><span data-i="cue_voice">Giọng đọc hướng dẫn</span><small data-i="cue_voice_s">"Hít vào… Nín thở… Thở ra…" (giọng của máy)</small></span><input type="checkbox" id="optVoice"></label>
+        <label class="switch"><span><span data-i="binaural">Nhịp đôi tai (cần tai nghe)</span><small data-i="binaural_s">Lớp âm rất nhỏ theo tần số của kỹ thuật – chỉ để thư giãn</small></span><input type="checkbox" id="optBin"></label>
+        <label class="switch"><span><span data-i="vibrate">Rung khi đổi nhịp</span><small data-i="vibrate_s">Android; iPhone không hỗ trợ rung từ web</small></span><input type="checkbox" id="optVib"></label>
+        <div><p class="label" data-i="volume">Âm lượng</p><input type="range" id="volRange" min="0" max="100" step="1" aria-labelledby="volLbl"><span id="volLbl" class="sr">Volume</span></div>
+        <button class="btn line sm" type="button" id="testSound" data-i="test_sound">▶ Nghe thử</button>
+        <p class="src" data-i="ios_note">iPhone: gạt công tắc im lặng sang bật tiếng để nghe được âm thanh từ web.</p>
+      </div>
+    </details>
+
+    <details class="fold">
+      <summary><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span><span data-i="rate_title">Đo nhịp thở tự nhiên</span><small data-i="rate_sub">Bấm mỗi lần bắt đầu hít vào</small></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <div class="fold-body">
+        <p class="hint" data-i="rate_hint">Ngồi yên, thở bình thường (đừng cố điều khiển) và bấm mỗi khi bắt đầu hít vào. Người lớn lúc nghỉ thường thở 12–20 nhịp/phút; 5–6 nhịp/phút là thở chậm có chủ đích.</p>
+        <button class="tap-big" type="button" id="rateTap" data-i="rate_tap">Đánh dấu hít vào</button>
+        <p class="src center" id="rateCount"></p>
+        <div class="stats">
+          <div class="stat"><span data-i="rate_last">2 lần gần nhất</span><b id="rateLast">—</b><small data-i="bpm">nhịp/phút</small></div>
+          <div class="stat"><span data-i="rate_all">Trung bình</span><b id="rateAll">—</b><small data-i="bpm">nhịp/phút</small></div>
+          <div class="stat"><span data-i="rate_stable">TB 10 nhịp ổn định nhất</span><b id="rateStable">—</b><small data-i="bpm">nhịp/phút</small></div>
+        </div>
+        <div class="hist" id="rateHist"></div>
+        <button class="linkish" type="button" id="rateReset" data-i="rate_reset">Đặt lại phép đo</button>
+      </div>
+    </details>
+
+    <details class="fold">
+      <summary><span class="ico" style="background:rgba(245,183,59,.12);color:var(--warn)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span><span data-i="safety_title">An toàn khi tập thở</span><small data-i="safety_sub">Đọc trước khi tập lần đầu</small></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <div class="fold-body"><ul class="list" id="safetyList"></ul></div>
+    </details>
+
+    <p class="foot"><span data-i-html="foot_line">Thông tin giáo dục sức khoẻ chung, không thay thế bác sĩ. Không tự ngừng thuốc.</span><br>
+      <a href="https://hlvsuckhoe.com/">hlvsuckhoe.com</a> · <a href="#" id="footGuide" data-i="guide_open">Hướng dẫn sử dụng</a> · <a href="#" id="footAbout" data-i="about_short">Giới thiệu & ủng hộ</a> · v<span id="verText"></span></p>
+  </div>
+</div>
+
+<!-- thanh điều khiển cố định -->
+<div class="dock">
+  <div class="dock-in">
+    <button class="icon-btn" id="resetBtn" type="button" data-i-aria="reset" aria-label="Kết thúc phiên">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+    </button>
+    <button class="go" id="goBtn" type="button"><svg id="goIcon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21"/></svg><span id="goLabel">Bắt đầu</span></button>
+    <button class="icon-btn" id="soundBtn" type="button" aria-pressed="true" data-i-aria="sound_toggle" aria-label="Bật/tắt âm thanh">
+      <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="4 9 8 9 12 5 12 19 8 15 4 15 4 9"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a9 9 0 0 1 0 12"/></svg>
+      <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden><polygon points="4 9 8 9 12 5 12 19 8 15 4 15 4 9"/><line x1="17" y1="9" x2="23" y2="15"/><line x1="23" y1="9" x2="17" y2="15"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- bảng giới thiệu & ủng hộ -->
+<div class="sheet" id="aboutSheet" role="dialog" aria-modal="true" aria-labelledby="aboutTitle" hidden>
+  <div class="sheet-in" id="aboutBody"></div>
+</div>
+
+<!-- lần đầu: đồng ý miễn trừ -->
+<div class="sheet" id="guideSheet" role="dialog" aria-modal="true" aria-labelledby="guideTitle" hidden>
+  <div class="sheet-in guide" id="guideBody"></div>
+</div>
+
+<div class="sheet" id="consentSheet" role="dialog" aria-modal="true" aria-labelledby="consentTitle" hidden>
+  <div class="sheet-in" id="consentBody"></div>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
