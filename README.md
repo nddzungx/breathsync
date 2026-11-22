@@ -48,6 +48,7 @@ Không cần build – tải đè tệp lên GitHub là xong. Xem **[docs/HUONG_
 Thấy hữu ích? Mời người phát triển một ly cà phê: VietQR – BIDV · 3210256468 · NGUYEN DUC DUNG · PayPal: ndd.phateco@gmail.com
 
 ## Phiên bản
+- **2.1.1** (22/11/2026): hướng dẫn **cài lên điện thoại** chi tiết (iPhone, Android, Samsung, máy tính, mở từ Zalo/Facebook), nút "Cài ngay" khi trình duyệt cho phép, mở thẳng bằng `tho.hlvsuckhoe.com/#cai-dat`; thêm liên kết Tôi & Gia Đình. Tệp mới `js/install-guide.js` (dùng chung cho các ứng dụng).
 - **2.1.0** (22/11/2026): thêm **Hướng dẫn sử dụng** song ngữ; thở bụng cơ hoành lên vị trí số 1 (nền tảng) với nguồn số 011, 068, 117, 121, 134, 135 và phương án **thở chúm môi 1:2**; ghi rõ ngân âm "M" không thuộc bài giảng BS. Phúc; bổ sung số 134 (1-1-2 cho trào ngược), 135 (lộ trình 1:2 → ba thì → 4-7-8); nút ngôn ngữ gọn một chạm.
 - **2.0.0** (22/11/2026): làm lại toàn bộ – song ngữ, giao diện điện thoại, nút Bắt đầu cố định + chế độ tập trung, âm thanh thiền mới, nội dung cập nhật theo số 117/120/121 kèm nhãn y văn, giới thiệu & ủng hộ, miễn trừ, logo mới, PWA tại tho.hlvsuckhoe.com.
 - 1.x: bản một tệp HTML ban đầu (5 phác đồ, sóng Alpha/Theta/Delta, binaural).

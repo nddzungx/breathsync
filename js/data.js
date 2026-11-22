@@ -5,7 +5,7 @@
    'y' = y văn xác nhận · 'p' = quan điểm của BS. Phúc · 'd' = đang tranh luận / chưa chứng minh.
    Sửa nội dung: chỉ sửa tệp này (giữ đủ cả vi và en). */
 window.APP = {
-  version: '2.1.0',
+  version: '2.1.1',
   url: 'https://tho.hlvsuckhoe.com/',
   repo: 'https://github.com/nddzungx/breathsync',
   email: 'nddzungx@gmail.com',
@@ -14,7 +14,8 @@ window.APP = {
   site: 'https://hlvsuckhoe.com/',
   apps: [
     { vi: 'HLV Sức Khỏe – huấn luyện viên sức khoẻ cá nhân', en: 'HLV Sức Khỏe – personal health coach', url: 'https://app.hlvsuckhoe.com/' },
-    { vi: 'Xưởng kính thiên văn', en: 'Telescope Workshop (Vietnamese)', url: 'https://thienvan.hlvsuckhoe.com/' }
+    { vi: 'Xưởng kính thiên văn', en: 'Telescope Workshop (Vietnamese)', url: 'https://thienvan.hlvsuckhoe.com/' },
+    { vi: 'Tôi & Gia Đình – gia phả, ngày giỗ, xưng hô', en: 'Me & My Family – family tree, memorial days', url: 'https://giadinh.hlvsuckhoe.com/' }
   ]
 };
 
@@ -320,7 +321,8 @@ window.GUIDE = {
     { h: L('📱 Cài lên điện thoại như một ứng dụng', '📱 Install on your phone'), list: [
       L('<b>iPhone:</b> mở tho.hlvsuckhoe.com bằng Safari → nút Chia sẻ → <b>Thêm vào MH chính</b>.', '<b>iPhone:</b> open tho.hlvsuckhoe.com in Safari → Share → <b>Add to Home Screen</b>.'),
       L('<b>Android:</b> mở bằng Chrome → menu ⋮ → <b>Cài đặt ứng dụng</b> (hoặc Thêm vào màn hình chính).', '<b>Android:</b> open in Chrome → ⋮ menu → <b>Install app</b> (or Add to Home screen).'),
-      L('Lần đầu cần mạng; sau đó dùng được cả khi không có mạng.', 'The first visit needs internet; after that it works offline.')
+      L('Lần đầu cần mạng; sau đó dùng được cả khi không có mạng.', 'The first visit needs internet; after that it works offline.'),
+      L('<button type="button" class="btn sm" data-install-guide>📲 Hướng dẫn cài đặt chi tiết (iPhone, Android, máy tính, Zalo/Facebook)</button>', '<button type="button" class="btn sm" data-install-guide>📲 Detailed install guide (iPhone, Android, computer)</button>')
     ]},
     { h: L('💡 Mẹo để tập hiệu quả', '💡 Tips'), list: [
       L('Tập cùng giờ mỗi ngày (sáng thức dậy, trưa, trước khi ngủ) – đều đặn quan trọng hơn tập lâu.', 'Practise at the same times daily (on waking, midday, bedtime) – regularity beats length.'),
