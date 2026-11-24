@@ -1,6 +1,6 @@
 /* BreathSync – service worker: lưu ứng dụng vào máy để chạy khi không có mạng.
    MỖI LẦN CẬP NHẬT: đổi số phiên bản trong CACHE (ví dụ v2.0.1) để máy người dùng tải bản mới. */
-const CACHE = 'breathsync-v2.1.1';
+const CACHE = 'breathsync-v2.1.1-wa1';
 const FILES = ['./', './index.html', './manifest.webmanifest', './js/i18n.js', './js/data.js', './js/audio.js', './js/app.js', './js/install-guide.js',
   './img/logo.svg', './img/qr_ung_ho.png', './icons/favicon-32.png', './icons/apple-touch-icon.png', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-512-maskable.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting())); });
